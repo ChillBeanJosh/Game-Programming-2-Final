@@ -6,7 +6,7 @@ public class PlayerKill : MonoBehaviour
 {
  private void OnCollisionStay(Collision other)
  {
-    if(other.gameObject.name == "Enemy")
+    if(other.gameObject.name == "Player")
     {
         Debug.Log("You have been hit!");
     }
