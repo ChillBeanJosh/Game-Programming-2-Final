@@ -8,7 +8,7 @@ public class EnemyFollow : MonoBehaviour
     public GameObject myPlayer;
     public float maxDistDelta = 0.1f;
 
-   private void LateUpdate()
+   private void Update()
    {
 
     Vector3 playerPos = myPlayer.transform.position;
