@@ -11,6 +11,10 @@ public class PlayerKill : MonoBehaviour
     {
         Debug.Log("You have been hit!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
  }
 }
