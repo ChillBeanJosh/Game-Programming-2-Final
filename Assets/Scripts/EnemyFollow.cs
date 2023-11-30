@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
+   
+   private Transform target;
+   public float speed;
 
-    public GameObject myPlayer;
-    public float maxDistDelta = 0.1f;
-
-   private void Update()
+   void Start()
    {
-
-    Vector3 playerPos = myPlayer.transform.position;
-    Vector3 targetPos = Vector3.Lerp(playerPos, this.transform.position, .5f);
-    transform.position = Vector3.MoveTowards(transform.position, playerPos, maxDistDelta * Time.deltaTime);
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
    }
+
+   void Update()
+   {
+    transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+   }
+  
 }
