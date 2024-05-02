@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Target : MonoBehaviour
 {
   
-  public float health = 100f;
+  public float health = 50;
+
 
   public void TakeDamage (float amount)
   {
@@ -18,6 +20,8 @@ public class Target : MonoBehaviour
 
   void Die()
   {
-        Destroy(gameObject);
+  
+    Destroy(gameObject);
+      
   }
 }
