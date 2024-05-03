@@ -7,6 +7,7 @@ public class EnemyFollow : MonoBehaviour
    
    private Transform target;
    public float speed;
+   public bool spdBoost;
 
    void Start()
    {
@@ -16,6 +17,20 @@ public class EnemyFollow : MonoBehaviour
    void Update()
    {
     transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    transform.LookAt(target);
+    
+
+     if (scoreManager.instance.score % 25 == 0 && scoreManager.instance.score > 0 )
+    {
+      spdBoost = true;
+
+      if(spdBoost == true && scoreManager.instance.hit == true)
+      {
+        speed += 5f;
+        spdBoost= false;
+      }
+    }
+
    }
   
 }

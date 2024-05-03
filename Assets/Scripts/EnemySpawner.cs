@@ -5,35 +5,47 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
+    public int xPos;
+    public int zPos;
+    public int enemyCount = 0;
+    public int enemyLimit = 10;
+    public float spawnTime = 3;
 
-    public float enemyTimer;
+ 
+
+    void Start()
+    {
+        StartCoroutine(EnemyDrop());
+    }
 
     void Update()
     {
-        enemyTimer += Time.deltaTime;
-
-        if ( enemyTimer >= 5f)
+        if (enemyCount == enemyLimit)
         {
-            enemyTimer = 0f;
-            Instantiate(enemy, new Vector3(-3, -2, -33), Quaternion.identity);
-            Instantiate(enemy, new Vector3(33, -2, 3), Quaternion.identity);
-            Instantiate(enemy, new Vector3(-5, -2, 31), Quaternion.identity);
-            Instantiate(enemy, new Vector3(-46, -2, -1), Quaternion.identity);
-            Instantiate(enemy, new Vector3(-36, -2, -24), Quaternion.identity);
-            Instantiate(enemy, new Vector3(-3, -2, -33), Quaternion.identity);
-            Instantiate(enemy, new Vector3(17, -2, 24), Quaternion.identity);
-            Instantiate(enemy, new Vector3(18, -2, -22), Quaternion.identity);
-            Instantiate(enemy, new Vector3(-34, -2, -22), Quaternion.identity);
+            enemyCount = 0;
+            spawnTime -= 0.5f;
+            StartCoroutine(EnemyDrop());
 
+            if(spawnTime <= 0.5f)
+            {
+                spawnTime = 1.5f;
+            }
+        }   
+     
+    }
 
-
-
-
-
-
-
+    IEnumerator EnemyDrop()
+    {
+        while (enemyCount < enemyLimit)
+        {
+            xPos = Random.Range(-50, 40);
+            zPos = Random.Range(-40, 50);
+            Instantiate(enemy, new Vector3(xPos, 15, zPos), Quaternion.identity);
+            yield return new WaitForSeconds(spawnTime);
+            enemyCount += 1;
         }
 
+        
 
     }
 
